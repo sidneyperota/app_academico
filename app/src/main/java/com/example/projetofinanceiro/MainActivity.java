@@ -1,12 +1,16 @@
 package com.example.projetofinanceiro;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.projetofinanceiro.controle.MovimentoCaixaCtrl;
+import com.example.projetofinanceiro.modelo.Movimento;
 import com.example.projetofinanceiro.modelo.MovimentoCaixa;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -16,43 +20,84 @@ import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class MainActivity extends AppCompatActivity {
 
 
     MovimentoCaixa movimentoCaixa;
-    private List<MovimentoCaixa> listaLancamentos = new ArrayList<>();
-    TextView txt_mensagem;
+    private List<Movimento> listaMovimento;
+    private RecyclerView recyclerViewMov;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById( R.id.toolbar );
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = findViewById( R.id.toolbar );
+       // setSupportActionBar(toolbar);
+        listaMovimento = new ArrayList<>();
 
-        txt_mensagem = findViewById( R.id.txt_mensagem );
+        recyclerViewMov = findViewById(R.id.lst_movimento);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        Movimento movimento = new Movimento();
+        movimento.setConta("001");
+        movimento.setData("2020-03-09");
+        movimento.setDoc("01212");
+        movimento.setHistorico("PAGO VALOR TESTE");
+        movimento.setId("01");
+        movimento.setOperacao("E");
+        movimento.setUsuario("01");
+        movimento.setValor("10.50");
+        listaMovimento.add( movimento );
+
+        // Lancamento 2
+        movimento = new Movimento();
+        movimento.setConta("0502");
+        movimento.setData("2020-03-09");
+        movimento.setDoc("012512");
+        movimento.setHistorico("RECEBIMENTO REF. PRODUTOS");
+        movimento.setId("02");
+        movimento.setOperacao("E");
+        movimento.setUsuario("01");
+        movimento.setValor("200.85");
+        listaMovimento.add( movimento );
+
+        // Fixar para melhorar o desempenho
+        recyclerViewMov.setHasFixedSize( true );
+
+
+        // Configurar Adapter
+        AdapterMovimento adapterMovimento = new AdapterMovimento( listaMovimento );
+
+        // Configurar RecyclerView
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerViewMov.setLayoutManager( layoutManager );
+        recyclerViewMov.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL ) );
+        recyclerViewMov.setAdapter( adapterMovimento );
+
+
+        FloatingActionButton fab = findViewById( R.id.fab );
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+               /*
                 MovimentoCaixaCtrl movimentoCaixaCtrl = new MovimentoCaixaCtrl();
                 String sRetorno = movimentoCaixaCtrl.consultarMovimento();
 
-                txt_mensagem.setText( sRetorno );
+                Toast.makeText( getApplicationContext(), "Clique configurado!",Toast.LENGTH_LONG ).show();
 
+                */
 
+                //Intent intent = new Intent( this, LancamentoActivity.class );
+                //startActivity( intent );
 
             }
         });
-
-
     }
 
     @Override
