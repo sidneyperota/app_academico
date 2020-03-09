@@ -1,41 +1,58 @@
 package com.example.projetofinanceiro;
 
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import com.example.projetofinanceiro.controle.MovimentoCaixaCtrl;
+import com.example.projetofinanceiro.modelo.MovimentoCaixa;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+
+
+
 public class MainActivity extends AppCompatActivity {
 
 
-    private List<MovimentoCaixa> listaFilmes = new ArrayList<>();
+    MovimentoCaixa movimentoCaixa;
+    private List<MovimentoCaixa> listaLancamentos = new ArrayList<>();
+    TextView txt_mensagem;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById( R.id.toolbar );
         setSupportActionBar(toolbar);
+
+        txt_mensagem = findViewById( R.id.txt_mensagem );
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Alterar por uma ação!", Snackbar.LENGTH_LONG)
-                        .setAction("Ação", null).show();
+
+                MovimentoCaixaCtrl movimentoCaixaCtrl = new MovimentoCaixaCtrl();
+                String sRetorno = movimentoCaixaCtrl.consultarMovimento();
+
+                txt_mensagem.setText( sRetorno );
+
+
+
             }
         });
+
+
     }
 
     @Override
@@ -58,5 +75,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+
+
     }
+
+
+
+
+
 }
