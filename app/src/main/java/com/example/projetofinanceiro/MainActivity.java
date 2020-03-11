@@ -90,15 +90,15 @@ public class MainActivity extends AppCompatActivity {
                 String sRetorno = movimentoCaixaCtrl.consultarMovimento();
 
                 Toast.makeText( getApplicationContext(), "Clique configurado!",Toast.LENGTH_LONG ).show();
-
                 */
-
-                //Intent intent = new Intent( this, LancamentoActivity.class );
-                //startActivity( intent );
-
-            }
+               exibirTelaTeste();
+           }
         });
     }
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -121,6 +121,15 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
 
+
+    }
+
+
+
+    public void exibirTelaTeste() {
+
+        Intent intent = new Intent( this, LancCaixaActivity.class );
+        startActivity( intent );
 
     }
 

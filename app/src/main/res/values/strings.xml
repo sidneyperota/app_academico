@@ -1,11 +1,12 @@
 <resources>
-    <string name="app_name">ProjetoFinanceiro</string>
+    <string name="app_name">App Financeiro</string>
     <string name="action_settings">Settings</string>
-    <string name="data">data</string>
-    <string name="conta">conta</string>
-    <string name="operacao">operacao</string>
-    <string name="historico">historico </string>
-    <string name="valor">valor</string>
+    <string name="data">Data</string>
+    <string name="conta">Conta</string>
+    <string name="operacao">Operacao</string>
+    <string name="historico">Histórico </string>
+    <string name="valor">Valor</string>
     <string name="title_activity_lancamento">Lançamento de Caixa</string>
     <string name="title_activity_lanc">LancActivity</string>
+    <string name="btnSalvar">Salvar</string>
 </resources>
