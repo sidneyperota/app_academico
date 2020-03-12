@@ -13,10 +13,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".LancCaixaActivity"></activity>
         <activity
-            android:name=".LancamentoActivity"
-            android:label="@string/title_activity_lancamento"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">

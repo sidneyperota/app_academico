@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
+import java.text.SimpleDateFormat;
+
 public class LancCaixaActivity extends AppCompatActivity {
 
 
@@ -28,6 +30,9 @@ public class LancCaixaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lanc_caixa);
 
         edtData = findViewById( R.id.edt_data );
+
+        edtData.addTextChangedListener(MaskEditUtil.mask(edtData, MaskEditUtil.FORMAT_DATE));
+
         edtDoc  = findViewById( R.id.edt_doc );
         edtHist = findViewById( R.id.txt_historico );
         edtConta = findViewById( R.id.edt_conta );
